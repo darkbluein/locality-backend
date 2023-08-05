@@ -1,5 +1,5 @@
 {
-  "name": "locality-server",
+  "name": "locality-backend",
   "version": "0.0.1",
   "description": "http server for all locality mobile app requests",
   "main": "src/index.ts",
