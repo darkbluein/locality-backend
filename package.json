@@ -1,0 +1,43 @@
+{
+  "name": "locality-server",
+  "version": "0.0.1",
+  "description": "http server for all locality mobile app requests",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "start": "npm run compile && node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkbluein/locality-server.git"
+  },
+  "keywords": [
+    "locality",
+    "express",
+    "mongodb",
+    "typescript",
+    "ecommerce"
+  ],
+  "author": "corevatsal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darkbluein/locality-server/issues"
+  },
+  "homepage": "https://github.com/darkbluein/locality-server#readme",
+  "type": "module",
+  "dependencies": {
+    "@apollo/server": "^4.9.1",
+    "graphql": "^16.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.8",
+    "typescript": "^5.1.6"
+  },
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/../src/$1",
+    "^@Config": "<rootDir>/../src/config/index",
+    "^@Utils": "<rootDir>/../src/utils",
+    "^@Models": "<rootDir>/../src/models"
+  }
+}
