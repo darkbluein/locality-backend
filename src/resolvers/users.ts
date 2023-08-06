@@ -1,9 +1,3 @@
-import User from "../models/User/model";
-
-const resolvers = {
-  Query: {},
-  Mutation: {},
-  Subscription: {},
-};
+const resolvers = {};
 
 export default resolvers;

@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 export default {
   app: {
     port: parseInt(process.env.PORT, 10) || 3000,
@@ -13,5 +15,10 @@ export default {
   redis: {
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT,
+  },
+  twilio: {
+    sid: process.env.TWILIO_ACCOUNT_SID,
+    token: process.env.TWILIO_AUTH_TOKEN,
+    messagingSid: process.env.TWILIO_MESSAGING_SID,
   },
 };

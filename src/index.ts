@@ -2,20 +2,18 @@ import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
 // typedefs
-import userTypedefs from "./models/User/typedefs";
-const typeDefs = [userTypedefs];
+import { userTypeDefs } from "./models/User/typedefs";
+import { authTypeDefs } from "./models/Auth/typedefs";
+const typeDefs = [userTypeDefs, authTypeDefs];
 
 // resolvers
-import userResolvers from "./resolvers/users";
+import authResolvers from "./resolvers/auth";
 const resolvers = {
   Query: {
-    ...userResolvers.Query,
+    ...authResolvers.Query,
   },
   Mutation: {
-    ...userResolvers.Mutation,
-  },
-  Subscription: {
-    ...userResolvers.Subscription,
+    ...authResolvers.Mutation,
   },
 };
 
@@ -30,8 +28,21 @@ const server = new ApolloServer({
 //  1. creates an Express app
 //  2. installs your ApolloServer instance as middleware
 //  3. prepares your app to handle incoming requests
-const { url } = await startStandaloneServer(server, {
-  listen: { port: 4000 },
-});
+import config from "./config";
+async function startApolloServer() {
+  await startStandaloneServer(server, {
+    listen: { port: config.app.port || 3000 },
+  })
+    .then(({ url }) => {
+      console.log(`Server running at ${url}`);
+    })
+    .catch((err) => {
+      throw new Error(err);
+    });
+}
 
-console.log(`🚀  Server ready at: ${url}`);
+import mongoose from "mongoose";
+const DB = config.database.mongodb.connectionString;
+mongoose.connect(DB).then(() => {
+  return startApolloServer();
+});

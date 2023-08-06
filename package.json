@@ -4,9 +4,10 @@
   "description": "http server for all locality mobile app requests",
   "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc",
-    "start": "npm run compile && node ./dist/index.js"
+    "dev": "nodemon --exec node --loader ts-node/esm src/index.ts",
+    "start": "ts-node --transpile-only src/index",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "repository": {
     "type": "git",
@@ -25,19 +26,21 @@
     "url": "https://github.com/darkbluein/locality-server/issues"
   },
   "homepage": "https://github.com/darkbluein/locality-server#readme",
-  "type": "module",
   "dependencies": {
     "@apollo/server": "^4.9.1",
-    "graphql": "^16.7.1"
+    "@graphql-tools/schema": "^10.0.0",
+    "graphql": "^16.7.1",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.2"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^20.4.8",
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "tsc": "^2.0.4",
     "typescript": "^5.1.6"
-  },
-  "moduleNameMapper": {
-    "^@/(.*)$": "<rootDir>/../src/$1",
-    "^@Config": "<rootDir>/../src/config/index",
-    "^@Utils": "<rootDir>/../src/utils",
-    "^@Models": "<rootDir>/../src/models"
   }
 }
